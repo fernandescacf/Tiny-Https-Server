@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Portfolio Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Crypto Portfolio Tracker</h1>
+    </header>
+    <main>
+        <section id="portfolio-total" style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div>
+                <h2>Total Portfolio Value: $<span id="total-value">0.00</span></h2>
+                <h3 style="position: relative;">
+                    Profit:
+                    <span id="total-profit-loss" style="position: absolute; left: 60px; top: 0;">$0.00</span>
+                    <span id="percentage-change" style="position: absolute; right: 10px; top: 0;">0.00%</span>
+                </h3>
+            </div>
+            <button id="add-transaction" style="font-size: 1.5em; padding: 5px 10px;">+</button>
+        </section>
+        <div id="add-transaction-modal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span class="close">×</span>
+                <h2>Add New Transaction</h2>
+                <form id="add-transaction-form" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="coin-autocomplete">Coin:</label>
+                        <input type="text" id="coin-autocomplete" placeholder="Type to search for coins...">
+                        <ul id="coin-suggestions" class="suggestions"></ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Amount:</label>
+                        <input type="number" id="amount" step="0.00000001" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Type:</label>
+                        <select id="type">
+                            <option value="buy">Buy</option>
+                            <option value="sell">Sell</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="value">Value (USDT):</label>
+                        <input type="number" id="value" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <button type="submit">Add Transaction</button>
+                </form>
+            </div>
+        </div>
+        <section id="coin-list">
+            <table id="coin-table" class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Coin</th>
+                        <th>Price</th>
+                        <th>Holdings</th>
+                        <th>All-time Profit</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="coin-data">
+                    <!-- Example row, will be populated dynamically -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <div id="transaction-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <h2>Transactions for <span id="modal-coin-symbol"></span></h2>
+            <table id="transaction-table" class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Coin</th>
+                        <th>Amount</th>
+                        <th>Value</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="transaction-data">
+                    <!-- Transaction data will be added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

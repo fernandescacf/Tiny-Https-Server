@@ -1,0 +1,362 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+#portfolio-total {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#portfolio-total h2, #portfolio-total h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+#total-profit-loss {
+    color: #e74c3c;
+}
+
+#percentage-change {
+    color: #e74c3c;
+    margin-left: 10px;
+}
+
+.add-button {
+    float: right;
+    font-size: 1.5em;
+    padding: 5px 10px;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    background-color: #27ae60;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Setting a fixed height for all table cells */
+.styled-table th, .styled-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    vertical-align: middle;
+    height: 50px; /* Fixed height for all rows */
+}
+
+.styled-table th {
+    background-color: #fff;
+    border-bottom: 1px solid black;
+    color: black;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.styled-table tr:hover {
+    background-color: #fff;
+}
+
+/* Styling for multiple lines in cells */
+.styled-table td span {
+    display: block;
+    font-size: 0.8em;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.percentage-change, .profit-loss {
+    /*font-weight: bold;*/
+    font-size: 0.8em;
+}
+
+.percentage-change.positive, .profit-loss.positive {
+    color: #2ecc71;
+}
+
+.percentage-change.negative, .profit-loss.negative {
+    color: #e74c3c;
+}
+
+.coin-entry {
+    display: flex;
+    width: 100%;
+  /*  align-items: center;*/
+}
+
+.coin-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+}
+
+.coin-symbol {
+    /* To ensure consistent positioning */
+    min-width: 50px; /* Adjust based on your longest coin symbol */
+}
+
+
+/* Style for the add transaction button */
+#add-transaction {
+    background: #009879;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#add-transaction:hover {
+    background: #007f67;
+}
+
+/* Style for form elements */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#add-transaction-form button[type="submit"] {
+    background-color: #009879;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#add-transaction-form button[type="submit"]:hover {
+    background-color: #007f67;
+}
+
+/* Adjust the modal and its content for consistency */
+#add-transaction-modal .modal-content {
+    position: relative; /* This is the key for correct positioning */
+    width: 300px; /* Adjust width as needed */
+}
+
+#coin-filter {
+    margin-bottom: 5px;
+}
+
+#coin-autocomplete {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.suggestions {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ddd;
+    border-top: none;
+    max-height: 150px;
+    overflow-y: auto;
+    position: absolute; /* Absolute within the modal content */
+    background-color: white;
+    z-index: 1000;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: calc(100% - 20px); /* Adjust for padding or border if necessary */
+    left: 0; /* Start from left edge of the modal content */
+}
+
+.suggestions li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestions li:hover {
+    background-color: #f0f0f0;
+}
+
+/*********************/
+/* For the login page*/
+/* Center the main content */
+.login-main {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* This centers vertically */
+    min-height: 50vh; /* Full viewport height */
+    padding-top: 10vh; /* Adjust this value to move the content up or down */
+}
+
+.login-section {
+    width: 300px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-section .form-group input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.login-section form {
+    text-align: center;
+}
+
+.login-section button[type="submit"] {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.login-section p {
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.login-section a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.login-section a:hover {
+    text-decoration: underline;
+}
+
+/*********************/
+/* For the register page*/
+/* Center the main content */
+.register-main {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* This centers vertically */
+    min-height: 50vh; /* Full viewport height */
+    padding-top: 10vh; /* Adjust this value to move the content up or down */
+}
+
+/* Rest of the CSS remains the same */
+.register-section {
+    width: 300px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.register-section .form-group input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.register-section form {
+    text-align: center;
+}
+
+.register-section button[type="submit"] {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.register-section p {
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.register-section a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.register-section a:hover {
+    text-decoration: underline;
+}
